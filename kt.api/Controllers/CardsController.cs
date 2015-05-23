@@ -19,7 +19,9 @@ namespace kt.api.Controllers
         // GET: api/Cards
         public IQueryable<Card> GetCards()
         {
-            return db.Cards;
+            return db.Cards
+                .Include(o=>o.Front)
+                .Include(o=>o.Back);
         }
 
         // GET: api/Cards/5
@@ -77,6 +79,18 @@ namespace kt.api.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }
+
+            if (db.CardSides.Any(p=>p.Id == card.Front.Id))
+            {
+                db.CardSides.Attach(card.Front);
+                db.Entry(card.Front).State = EntityState.Unchanged;
+            }
+
+            if (db.CardSides.Any(p=>p.Id == card.Back.Id))
+            {
+                db.CardSides.Attach(card.Back);
+                db.Entry(card.Back).State = EntityState.Unchanged;
             }
 
             db.Cards.Add(card);

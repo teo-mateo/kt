@@ -29,7 +29,7 @@ namespace kt.api.Migrations
 
             context.Decks.AddOrUpdate(p => p.Id, new Models.Deck[] 
                 {
-                    new Models.Deck() { Id = 1, Name="Default deck"}
+                    new Models.Deck() { Id = 1, Name="Default deck", CreationDate = DateTime.Now}
                 });
         }
     }

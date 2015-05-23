@@ -16,10 +16,10 @@ namespace kt.api.Models
     {
         public string Id { get; set; }
         public int DeckId { get; set; }
-        public Deck Deck { get; set; }
         public CardStatus Status { get; set; }
 
         public CardSide Front { get; set; }
         public CardSide Back { get; set; }
+
     }
 }
