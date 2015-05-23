@@ -9,6 +9,8 @@ namespace kt.api
     {
         public static void Register(HttpConfiguration config)
         {
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("text/html"));
+
             // Web API configuration and services
 
             // Web API routes

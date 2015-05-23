@@ -12,6 +12,11 @@ namespace kt.api
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+
+            using(var db = new Models.KTContext())
+            {
+                var cnt = db.Decks.Count();
+            }
         }
     }
 }
