@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CardsController.cs" />
     <Compile Include="Controllers\CardSidesController.cs" />
     <Compile Include="Controllers\DecksController.cs" />
     <Compile Include="Global.asax.cs">
