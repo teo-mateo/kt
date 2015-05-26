@@ -1,9 +1,244 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>index page.</title>
+    <title>kt client</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <link href="../Content/styles.css" rel="stylesheet" />
 </head>
-<body>
+<body ng-app="ktApp" ng-controller="DecksController">
+
+    <script src="../Scripts/jquery-1.9.1.js"></script>
+    <script src="../Scripts/bootstrap.js"></script>
+    <script src="../Scripts/bootbox.js"></script>
+    <script src="../Scripts/bootstrap-markdown.js"></script>
+
+    <div class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">KT Client</a>
+
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <div class="collapse navbar-collapse navHeaderCollapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Decks</a></li>
+                    <li><a href="#">Test</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Social Media <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Twitter</a></li>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Google+</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#contact" data-toggle="modal">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Decks -->
+        <div class="col-md-4">
+            <div class="panel panel-primary ">
+                <div class="panel-heading">Decks</div>
+                <div class="panel-body" id="decksContainer">
+
+                    <!-- repeating for each deck-->
+                    <div class="row" style="margin:1px" ng-repeat="deck in decks">
+
+                        <div class="deck pull-left" ng-click="viewDeck(deck.Id)">
+                            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                            <span class="deck">{{ deck.Name }}</span>
+                        </div>
+                        
+                        
+                        <div class="pull-right">
+                            <a class=""
+                               ng-click="showDeckEditor(deck.Id)"
+                               href="#deckedit"
+                               data-toggle="modal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                            <a class=""
+                               ng-click="deleteDeck(deck.Id)"
+                               href="#"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                            <a class=""
+                               ng-click="viewDeck(deck.Id)" 
+                               href="#{{deck.Id}}"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <a href="#deckedit" class="btn btn-primary" data-toggle="modal" ng-click="showDeckEditor()">New deck</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="deckViewArea col-md-8" >
+            <div class="panel panel-default">
+                <div class="panel-heading">Cards in "{{ selectedDeck.Name }}": {{selectedDeck.Cards.length}} cards.</div>
+                <div class="panel-body">
+                    <div class="pull-right">
+                        <a href="#cardedit" class="btn btn-primary" data-toggle="modal" ng-click="showCardEditor(0)">Add card</a>
+                    </div>
+                    <table class="table table-striped" ng-if="selectedDeck.Cards.length > 0">
+                        <thead>
+                            <tr>
+                                <td><strong>#</strong></td>
+                                <td><strong>card</strong></td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="card{{card.Id}}" ng-repeat="card in selectedDeck.Cards" ng-click="selectCard(card.Id)">
+                                <td>
+                                    {{$index+1}}
+
+                                </td>
+                                <td>
+                                    <div id="cardFront{{card.Id}}">
+                                        {{card.Front.Content}}
+                                    </div>
+                                    <div id="cardBack{{card.Id}}" style="display:none">
+                                        <hr />
+                                        {{ card.Back.Content }}
+                                    </div>
+                                
+                                </td>
+                                <td>
+                                    <div class="pull-right">
+                                        <a href="#cardedit" class="" data-toggle="modal" ng-click="showCardEditor(card.Id)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                                        <a href="#" class=""><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div ng-if="selectedDeck.Cards.length == 0">
+                        No cards in this deck.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--contact modal dialog-->
+    <div class="modal fade" id="contact" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Contact Tech Site</h4>
+                </div>
+                <div class="modal-body">
+                    <p>In this Bootstrap 3 Tutorial, we will be creating a popup modal which can display text, images, videos or any other HTML element</p>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-primary" data-dismiss="modal">Close</a>
+                    <a class="btn btn-default" data-dismiss="modal">Close</a>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <!-- edit deck modal dialog-->
+    <div class="modal fade" id="deckedit" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>{{ deckActionHeader }}</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="inputDeckName">Name:</label>
+                        <input id="inputDeckName" ng-model="editDeck.Name" placeholder="Enter new deck name"
+                               class="form-control input-lg" />
+                    </div>
+                    <div class="form-group">
+                        <label>{{editDeck.CreationDate | date}}</label>
+                    </div>
+                </div>
+                <div class=" modal-footer">
+                    <a class="btn btn-primary" data-dismiss="modal" ng-click="saveDeck()">Ok</a>
+                    <a class="btn btn-default" data-dismiss="modal">Close</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- confirmation dialog -->
+    <div id="confirm" class="modal hide fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Are you sure?</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Yes</button>
+                    <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- edit card modal dialog-->
+        <div id="cardedit" class="modal fade">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Edit card</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!-- front -->
+
+                        <div class="form-group">
+                            <h4>Front:</h4>
+                            <textarea ng-model="editCard.Front.Content" placeholder="Required" class="form-control input-lg"></textarea>
+                        </div>
+                        <hr />
+                        <!-- back -->
+                        <div class="form-group">
+                            <h4>Back:</h4>
+                            <textarea ng-model="editCard.Back.Content" placeholder="Required" class="form-control input-lg"></textarea>
+                        </div>
+                    </div>
+                    <div class=" modal-footer">
+                        <a class="btn btn-primary" data-dismiss="modal" ng-click="saveCard()">Ok</a>
+                        <a class="btn btn-default" data-dismiss="modal">Close</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+            <!-- footer-->
+            <div class="navbar navbar-default navbar-fixed-bottom">
+                <div class="container">
+                    <p class="navbar-text pull-left">Site Built By Whoever</p>
+                    <a class="navbar-btn btn-danger btn pull-right" href="http://youtube.com">Subscribe on yt</a>
+                </div>
+            </div>
+
+
+            <script src="../Scripts/angular.js"></script>
+            <!-- modules -->
+            <script src="../Scripts/app/app.js"></script>
+
+            <!-- controllers -->
+            <script src="../Scripts/app/controllers/DecksController.js"></script>
 
 </body>
 </html>

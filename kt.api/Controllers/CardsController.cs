@@ -52,7 +52,8 @@ namespace kt.api.Controllers
             }
 
             db.Entry(card).State = EntityState.Modified;
-
+            db.Entry(card.Front).State = EntityState.Modified;
+            db.Entry(card.Back).State = EntityState.Modified;
             try
             {
                 db.SaveChanges();
