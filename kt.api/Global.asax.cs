@@ -22,14 +22,14 @@ namespace kt.api
 
         public static string GetConnectionString(){
             var azureKey = "SQLAZURECONNSTR_ktContext";
-            var azureCn = Environment.GetEnvironmentVariable(azureKey);
+            var connectionString = Environment.GetEnvironmentVariable(azureKey);
 
-            if (azureCn == null)
+            if (connectionString == null)
             {
-                azureCn = System.Configuration.ConfigurationManager.ConnectionStrings["ktConnectionString"].ConnectionString;
+                connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ktConnectionString"].ConnectionString;
             }
 
-            return azureCn;
+            return connectionString;
         }
     }
 }
