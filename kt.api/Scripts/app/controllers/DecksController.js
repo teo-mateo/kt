@@ -14,8 +14,8 @@ app.controller('DecksController', [
     function ($scope, $http) {
         //this method instantiates the scope.
 
-        //$scope.ktservice = 'http://ktapi.azurewebsites.net/';
-        $scope.ktservice = 'http://localhost:63611/';
+        $scope.ktservice = '/';
+        //$scope.ktservice = 'http://localhost:63611/';
 
         $scope.deckActionAddNew = "Add a new deck";
         $scope.deckActionEdit = "Change deck";
