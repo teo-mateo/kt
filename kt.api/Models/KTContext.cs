@@ -9,7 +9,7 @@ namespace kt.api.Models
     public class KTContext : DbContext
     {
         public KTContext()
-            : base("ktConnectionString")
+            : base(WebApiApplication.GetConnectionString())
         {
 
         }

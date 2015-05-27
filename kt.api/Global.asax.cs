@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Routing;
+using System.Configuration;
 
 namespace kt.api
 {
@@ -17,6 +18,18 @@ namespace kt.api
             {
                 var cnt = db.Decks.Count();
             }
+        }
+
+        public static string GetConnectionString(){
+            var azureKey = "SQLAZURECONNSTR_ktContext";
+            var azureCn = Environment.GetEnvironmentVariable(azureKey);
+
+            if (azureCn == null)
+            {
+                azureCn = System.Configuration.ConfigurationManager.ConnectionStrings["ktConnectionString"].ConnectionString;
+            }
+
+            return azureCn;
         }
     }
 }
