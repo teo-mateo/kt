@@ -79,6 +79,8 @@ namespace kt.api.Controllers
         [ResponseType(typeof(Deck))]
         public IHttpActionResult PostDeck(Deck deck)
         {
+            ///de ce plm nu merge?
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
