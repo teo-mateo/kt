@@ -19,17 +19,19 @@ namespace kt.api.Controllers
         // GET: api/Decks
         public IQueryable<Deck> GetDecks()
         {
-            return db.Decks
-                .Include(p => p.Cards)
-                .Include(p => p.Cards.Select(c => c.Front))
-                .Include(p => p.Cards.Select(c => c.Back));
+            return db.Decks;
         }
 
         // GET: api/Decks/5
         [ResponseType(typeof(Deck))]
         public IHttpActionResult GetDeck(int id)
         {
-            Deck deck = db.Decks.Find(id);
+            Deck deck = db.Decks
+                .Include(p => p.Cards)
+                .Include(p => p.Cards.Select(c => c.Front))
+                .Include(p => p.Cards.Select(c => c.Back))
+                .Where(p=>p.Id == id).FirstOrDefault();
+
             if (deck == null)
             {
                 return NotFound();

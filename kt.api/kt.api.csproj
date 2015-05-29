@@ -124,6 +124,7 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\controllers\DecksController.js" />
+    <Content Include="Scripts\app\services\DecksService.js" />
     <Content Include="Scripts\app\services\forecast.js" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
@@ -903,7 +904,9 @@
     <Content Include="Scripts\version.json" />
     <None Include="Scripts\_references.js" />
     <Content Include="Static\index.html" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />

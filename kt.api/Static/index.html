@@ -65,6 +65,7 @@
                     <hr />
 
                     <a href="#deckedit" class="btn btn-primary" data-toggle="modal" ng-click="showDeckEditor()">New deck</a>
+                    <a href="#" class="btn btn-primary" ng-click="getDecks()">Get decks</a>
                 </div>
             </div>
         </div>
@@ -79,24 +80,24 @@
                     <table class="table table-striped" ng-if="selectedDeck.Cards.length > 0">
                         <thead>
                             <tr>
-                                <td><strong>#</strong></td>
+                                <td width="30"><strong>#</strong></td>
                                 <td><strong>card</strong></td>
                                 <td></td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr id="card{{card.Id}}" ng-repeat="card in selectedDeck.Cards" ng-click="selectCard(card.Id)">
-                                <td>
+                                <td width="30">
                                     {{$index+1}}
 
                                 </td>
                                 <td>
                                     <div id="cardFront{{card.Id}}">
-                                        {{card.Front.Content}}
+                                        <p style="white-space: pre;">{{card.Front.Content}}</p>
                                     </div>
                                     <div id="cardBack{{card.Id}}" style="display:none">
                                         <hr />
-                                        {{ card.Back.Content }}
+                                        <p style="white-space: pre;">{{ card.Back.Content }}</p>
                                     </div>
                                 
                                 </td>
@@ -223,11 +224,15 @@
 
 
             <script src="../Scripts/angular.js"></script>
+            <script src="../Scripts/angular-resource.js"></script>
             <!-- modules -->
             <script src="../Scripts/app/app.js"></script>
 
             <!-- controllers -->
             <script src="../Scripts/app/controllers/DecksController.js"></script>
+
+            <!-- services -->
+            <script src="../Scripts/app/services/DecksService.js"></script>
 
 </body>
 </html>

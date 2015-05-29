@@ -1,4 +1,6 @@
-﻿function makeid() {
+﻿/// <reference path="../app.js"/>   
+/// <reference path="../../_references.js" />
+function makeid() {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
@@ -8,12 +10,16 @@
     return text;
 }
 
+function fac(s) {
+
+};
 
 app.controller('DecksController', [
-    '$scope','$http',
-    function ($scope, $http) {
+    '$scope','$http', 'decks', 'singleDeck',
+    function ($scope, $http, decksService, singleDeck) {
         //this method instantiates the scope.
-
+       
+        
         $scope.ktservice = '/';
         //$scope.ktservice = 'http://localhost:63611/';
 
@@ -34,16 +40,29 @@ app.controller('DecksController', [
 
         var _scope = $scope;
 
+        $scope.getDecks = function () {
+            decksService.success(function (data) {
+                var d = data;
+            });
+        };
+
         /*
         Load all decks
         */
-        $scope.loadDecks = function loadDecks() {
-            var url = $scope.ktservice + 'api/Decks';
-            $http.get(url).success(function (data) {
+        $scope.loadDecks = function() {
+            decksService.success(function (data) {
                 _scope.decks = data;
-            }).error(function (err) {
+            })
+            .error(function (err) {
                 alert(err);
             });
+
+            //var url = $scope.ktservice + 'api/Decks';
+            //$http.get(url).success(function (data) {
+            //    _scope.decks = data;
+            //}).error(function (err) {
+            //    alert(err);
+            //});
 
             $('.deckViewArea').hide();
         };
@@ -112,6 +131,9 @@ app.controller('DecksController', [
         //display the questions that belong to a deck
         $scope.viewDeck = function (deckId) {
             $('.deckViewArea').show();
+
+            $scope.selectedDeck = singleDeck.query({ id: deckId });
+
             $scope.selectedDeck = $scope.decks.filter(function (element) {
                 return element.Id === deckId;
             })[0];

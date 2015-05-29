@@ -1,1 +1,1 @@
-﻿var app = angular.module('ktApp', []);
+﻿var app = angular.module('ktApp', ['ngResource']);
