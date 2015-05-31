@@ -5,9 +5,8 @@
 //the 'decksService' service exposes the following methods: 
 // getAllDecks() = returns a list of all decks (cards not loaded)
 // getDeck(id) - returns the deck with the given id, cards loaded.
-// deleteDeck(id) - TBD
-// createNewDeck(deck) - TBD
-// updateDeck(deck) - TBD
+// deleteDeck(id) - deletes the deck with the given id
+// saveDeck(deck) - saves a new or updated deck
 app.factory('decksService', ['$http', function ($http) {
     var URL_DECKS = "/api/Decks";
     var url_decks_get_one = function (id) { return URL_DECKS + "/" + id; }
@@ -31,8 +30,7 @@ app.factory('decksService', ['$http', function ($http) {
         })
     };
     var fnSaveDeck = function (deck) {
-        if (deck.Id == 0) {
-            //new deck
+        if (deck.Id == 0) { //new deck
             return $http.post(URL_DECKS, deck)
             .success(function (data) {
                 toastr.success("new deck was successfully saved.");
@@ -42,8 +40,7 @@ app.factory('decksService', ['$http', function ($http) {
                 toastr.error("error saving new deck");
                 return data;
             });
-        } else {
-            //update deck
+        } else { //update deck
             return $http.put(URL_DECKS + "/" + deck.Id, deck)
             .success(function (data) {
                 toastr.success("deck was successfully updated.");

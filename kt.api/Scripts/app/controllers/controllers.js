@@ -39,25 +39,61 @@ app.controller('DeckCardsCtrl', ['$scope', 'decksService', '$routeParams',
 
 app.controller("DeckEditCtrl", ['$scope', 'decksService', '$routeParams', '$location', '$rootScope',
     function ($scope, decksService, $routeParams, $location, $rootScope) {
-        if ($routeParams.deckId !== undefined) {
+        if ($routeParams.deckId !== undefined) { //editing a deck
             $scope.deckId = $routeParams.deckId;
             decksService.getDeck($routeParams.deckId)
                 .success(function (data) {
                     $scope.deck = data;
                 });
-        } else {
+        } else { // new deck
             $scope.deck = {
                 Id: 0,
                 CreationDate: new Date()
             };
-        }
+        };
 
         $scope.save = function () {
             decksService.saveDeck($scope.deck)
             .success(function (data) {
                 $location.path('#/decks/' + data.Id, false);
                 $rootScope.$broadcast('decks.changed', '');
+                $scope.$apply();
             });
         };
+    }
+]);
+
+
+app.controller("CardEditCtrl", ["$scope", "cardsService", "$routeParams", "$location",
+    function ($scope, cardsService, $routeParams, $location) {
+        if ($routeParams.cardId !== undefined) { // editing a card
+            $scope.cardId = $routeParams.cardId;
+            cardsService.getCard($routeParams.cardId)
+                .success(function (data) {
+                    $scope.card = data;
+                });
+        }
+        else { // new card
+            $scope.card = {
+                DeckId: $routeParams.deckId,
+                Id: 0,
+                Status: 1,
+                Front: {
+                    Id: 0,
+                    Content: "",
+                },
+                Back: {
+                    Id: 0,
+                    Content: ""
+                }
+            };
+        };
+
+        $scope.save = function () {
+            cardsService.saveCard($scope.card)
+                .success(function (data) {
+                    var newloc = $location.path("/decks/" + $scope.card.DeckId);
+                });
+        }
     }
 ]);

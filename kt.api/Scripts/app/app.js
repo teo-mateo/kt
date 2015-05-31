@@ -23,6 +23,17 @@ toastr.options = {
 
 var app = angular.module('ktApp', ['ngRoute', ]);
 
+///function that generates a string identifier.
+app.ktMakeId = function () {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < 5; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
+
 //confirm click custom directive
 app.directive('ngConfirmClick', [
   function () {
@@ -57,11 +68,11 @@ app.config(['$routeProvider',
             templateUrl: 'views/deck-edit.html',
             controller: "DeckEditCtrl"
         })
-        .when('cards-new', {
+        .when('/cards-new/:deckId', {
             templateUrl: 'views/card-edit.html',
             controller: "CardEditCtrl"
         })
-        .when('cards-edit/:cardId', {
+        .when('/cards-edit/:cardId', {
             templateUrl: 'views/cards-edit.html',
             controller: "CardEditCtrl"
         })

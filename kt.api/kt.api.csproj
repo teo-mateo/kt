@@ -91,7 +91,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\styles.css" />
-    <Content Include="DeckListController.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -128,6 +127,7 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\controllers\OldController.js" />
+    <Content Include="Scripts\app\services\CardsService.js" />
     <Content Include="Scripts\app\services\DecksService.js" />
     <Content Include="Scripts\app\services\forecast.js" />
     <Content Include="Scripts\bootbox.js" />
@@ -909,6 +909,7 @@
     <None Include="Scripts\_references.js" />
     <Content Include="Static\indexOld.html" />
     <Content Include="Static\index.html" />
+    <Content Include="Static\views\card-edit.html" />
     <Content Include="Static\views\deck-details.html" />
     <Content Include="Static\views\deck-edit.html" />
     <Content Include="Web.config">
