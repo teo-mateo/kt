@@ -91,6 +91,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\styles.css" />
+    <Content Include="DeckListController.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -99,6 +100,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <None Include="Scripts\angular.intellisense.js" />
+    <Content Include="Scripts\app\controllers\controllers.js" />
+    <None Include="Scripts\app\controllers\_references.js" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -123,7 +127,7 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app\app.js" />
-    <Content Include="Scripts\app\controllers\DecksController.js" />
+    <Content Include="Scripts\app\controllers\OldController.js" />
     <Content Include="Scripts\app\services\DecksService.js" />
     <Content Include="Scripts\app\services\forecast.js" />
     <Content Include="Scripts\bootbox.js" />
@@ -903,7 +907,10 @@
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\version.json" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Static\indexOld.html" />
     <Content Include="Static\index.html" />
+    <Content Include="Static\views\deck-details.html" />
+    <Content Include="Static\views\deck-edit.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -939,6 +946,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\lib\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

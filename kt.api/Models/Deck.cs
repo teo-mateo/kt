@@ -9,6 +9,7 @@ namespace kt.api.Models
     public class Deck : IEntity
     {
         public int Id { get; set; }
+
         public string Name { get; set; }
 
         [Required]

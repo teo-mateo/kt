@@ -1,1 +1,73 @@
-﻿var app = angular.module('ktApp', ['ngResource']);
+﻿/// <reference path="../../jquery-1.9.1.js" />
+/// <reference path="../../angular.js" />
+/// <reference path="../../angular-route.js" />
+
+//toastr options
+toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-top-center",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+};
+
+var app = angular.module('ktApp', ['ngRoute', ]);
+
+//confirm click custom directive
+app.directive('ngConfirmClick', [
+  function () {
+      return {
+          priority: -1,
+          restrict: 'A',
+          link: function (scope, element, attrs) {
+              element.bind('click', function (e) {
+                  var message = attrs.ngConfirmClick;
+                  if (message && !confirm(message)) {
+                      e.stopImmediatePropagation();
+                      e.preventDefault();
+                  }
+              });
+          }
+      }
+  }
+]);
+
+app.config(['$routeProvider',
+    function ($routeProvider) {
+        $routeProvider
+        .when('/decks/:deckId', {
+            templateUrl: 'views/deck-details.html',
+            controller: 'DeckCardsCtrl'
+        })
+        .when('/decks-new', {
+            templateUrl: 'views/deck-edit.html',
+            controller: "DeckEditCtrl"
+        })
+        .when('/decks-edit/:deckId', {
+            templateUrl: 'views/deck-edit.html',
+            controller: "DeckEditCtrl"
+        })
+        .when('cards-new', {
+            templateUrl: 'views/card-edit.html',
+            controller: "CardEditCtrl"
+        })
+        .when('cards-edit/:cardId', {
+            templateUrl: 'views/cards-edit.html',
+            controller: "CardEditCtrl"
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
+    }
+
+]);

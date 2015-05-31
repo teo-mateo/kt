@@ -1,0 +1,19 @@
+﻿<form ng-submit="save()" name="deckForm">
+    <h3>{{(deck.Id == 0) ? 'New deck' : 'Edit deck'}}</h3>
+    <hr />
+    <div class="form-group" ng-class="{'has-error': deckForm.name.$invalid}">
+        <label for="inputDeckName">Name:</label>
+        <input name="name" ng-model="deck.Name" placeholder="Enter new deck name"
+               class="form-control input-lg"
+               required />
+    </div>
+    <div class="form-group">
+        <label>{{deck.CreationDate | date}}</label>
+    </div>
+    <div class="pull-right">
+        <button class="btn btn-primary" type="submit">Ok</button>
+        <!--<a class="btn btn-primary" ng-click="save()">Ok</a>-->
+        <a class="btn btn-default" href="#/Decks">Cancel</a>
+    </div>
+</form>
+

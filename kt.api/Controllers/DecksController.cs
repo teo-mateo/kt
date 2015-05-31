@@ -18,6 +18,7 @@ namespace kt.api.Controllers
 
         // GET: api/Decks
         public IQueryable<Deck> GetDecks()
+        
         {
             return db.Decks;
         }
