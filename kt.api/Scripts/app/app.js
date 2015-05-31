@@ -73,7 +73,7 @@ app.config(['$routeProvider',
             controller: "CardEditCtrl"
         })
         .when('/cards-edit/:cardId', {
-            templateUrl: 'views/cards-edit.html',
+            templateUrl: 'views/card-edit.html',
             controller: "CardEditCtrl"
         })
         .otherwise({

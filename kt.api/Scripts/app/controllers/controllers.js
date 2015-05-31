@@ -34,6 +34,11 @@ app.controller('DeckCardsCtrl', ['$scope', 'decksService', '$routeParams',
             .success(function (data) {
                 $scope.deck = data;
             });
+
+        $scope.selectCard = function (id) {
+            var elemBack = "#cardBack" + id;
+            $(elemBack).toggle();
+        };
         
     }]);
 
@@ -55,7 +60,7 @@ app.controller("DeckEditCtrl", ['$scope', 'decksService', '$routeParams', '$loca
         $scope.save = function () {
             decksService.saveDeck($scope.deck)
             .success(function (data) {
-                $location.path('#/decks/' + data.Id, false);
+                $location.path('/decks/' + data.Id, false);
                 $rootScope.$broadcast('decks.changed', '');
                 $scope.$apply();
             });
@@ -64,8 +69,8 @@ app.controller("DeckEditCtrl", ['$scope', 'decksService', '$routeParams', '$loca
 ]);
 
 
-app.controller("CardEditCtrl", ["$scope", "cardsService", "$routeParams", "$location",
-    function ($scope, cardsService, $routeParams, $location) {
+app.controller("CardEditCtrl", ["$scope", "cardsService", "$routeParams", "$location", '$rootScope',
+    function ($scope, cardsService, $routeParams, $location, $rootScope) {
         if ($routeParams.cardId !== undefined) { // editing a card
             $scope.cardId = $routeParams.cardId;
             cardsService.getCard($routeParams.cardId)
@@ -93,6 +98,7 @@ app.controller("CardEditCtrl", ["$scope", "cardsService", "$routeParams", "$loca
             cardsService.saveCard($scope.card)
                 .success(function (data) {
                     var newloc = $location.path("/decks/" + $scope.card.DeckId);
+                    $rootScope.$broadcast('decks.changed', '');
                 });
         }
     }

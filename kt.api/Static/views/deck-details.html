@@ -6,7 +6,7 @@
         <div class="pull-right">
             <a href="#cards-new/{{deck.Id}}" class="btn btn-primary">Add card</a>
         </div>
-        <table class="table table-striped" ng-if="selectedDeck.Cards.length > 0">
+        <table class="table table-striped" ng-if="deck.Cards.length > 0">
             <thead>
                 <tr>
                     <td width="30"><strong>#</strong></td>
@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr id="card{{card.Id}}" ng-repeat="card in selectedDeck.Cards" ng-click="selectCard(card.Id)">
+                <tr id="card{{card.Id}}" ng-repeat="card in deck.Cards" ng-click="selectCard(card.Id)">
                     <td width="30">
                         {{$index+1}}
 

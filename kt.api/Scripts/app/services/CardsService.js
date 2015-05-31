@@ -34,7 +34,7 @@ app.factory('cardsService', ['$http', function ($http) {
                 return data;
             });
         } else { //update card
-            return $http.put(url_card(card.Id))
+            return $http.put(url_card(card.Id), card)
             .success(function (data) {
                 toastr.success("card was successfully updated.")
                 return data;

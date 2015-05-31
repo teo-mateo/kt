@@ -28,7 +28,10 @@ namespace kt.api.Controllers
         [ResponseType(typeof(Card))]
         public IHttpActionResult GetCard(string id)
         {
-            Card card = db.Cards.Find(id);
+            Card card = db.Cards
+                .Include(o=>o.Front)
+                .Include(o=>o.Back)
+                .First(p=>p.Id == id);
             if (card == null)
             {
                 return NotFound();

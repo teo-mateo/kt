@@ -20,7 +20,8 @@ namespace kt.api.Controllers
         public IQueryable<Deck> GetDecks()
         
         {
-            return db.Decks;
+            return db.Decks
+                   .Include(p => p.Cards);
         }
 
         // GET: api/Decks/5
