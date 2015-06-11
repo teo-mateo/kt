@@ -76,8 +76,11 @@ app.config(['$routeProvider',
             templateUrl: 'views/card-edit.html',
             controller: "CardEditCtrl"
         })
+        .when('/main', {
+            templateUrl: 'views/main.html'
+        })
         .otherwise({
-            redirectTo: '/'
+            redirectTo: '/main'
         });
     }
 

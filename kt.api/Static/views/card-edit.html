@@ -3,17 +3,21 @@
     <hr />
 
     <!-- front-->
-    <div class="form-group">
+    <div class="form-group" ng-class="{'has-error': cardForm.front.$invalid}">
         <h4>Front:</h4>
-        <textarea ng-model="card.Front.Content" placeholder="Required" class="form-control input-lg"
+        <textarea ng-model="card.Front.Content" placeholder="Required" 
+                  name="front"
+                  class="form-control input-lg"
                   required></textarea>
     </div>
     <hr />
 
     <!-- back -->
-    <div class="form-group">
+    <div class="form-group" ng-class="{'has-error': cardForm.back.$invalid}">
         <h4>Back:</h4>
-        <textarea ng-model="card.Back.Content" placeholder="Required" class="form-control input-lg"
+        <textarea ng-model="card.Back.Content" placeholder="Required"
+                  name="back"
+                  class="form-control input-lg"
                   required></textarea>
     </div>
 

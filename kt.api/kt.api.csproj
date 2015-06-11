@@ -912,6 +912,7 @@
     <Content Include="Static\views\card-edit.html" />
     <Content Include="Static\views\deck-details.html" />
     <Content Include="Static\views\deck-edit.html" />
+    <Content Include="Static\views\main.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -924,12 +925,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506111603444_zoolander.cs" />
+    <Compile Include="Migrations\201506111603444_zoolander.Designer.cs">
+      <DependentUpon>201506111603444_zoolander.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\CardSide.cs" />
     <Compile Include="Models\Deck.cs" />
     <Compile Include="Models\IEntity.cs" />
     <Compile Include="Models\KTContext.cs" />
+    <Compile Include="Models\Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -948,6 +954,11 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\lib\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201506111603444_zoolander.resx">
+      <DependentUpon>201506111603444_zoolander.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
