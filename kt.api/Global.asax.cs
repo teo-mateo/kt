@@ -20,16 +20,28 @@ namespace kt.api
             }
         }
 
-        public static string GetConnectionString(){
-            var azureKey = "SQLAZURECONNSTR_ktContext";
-            var connectionString = Environment.GetEnvironmentVariable(azureKey);
-
-            if (connectionString == null)
+        public static string GetConnectionString()
+        {
+            try
             {
-                connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ktConnectionString"].ConnectionString;
-            }
+                var azureKey = "SQLAZURECONNSTR_ktContext";
+                var connectionString = Environment.GetEnvironmentVariable(azureKey);
 
-            return connectionString;
+                if (connectionString == null)
+                {
+                    var cs = System.Configuration.ConfigurationManager.ConnectionStrings["ktConnectionString"];
+                    if (cs == null)
+                        return "kt";
+                    else
+                        return cs.ConnectionString;
+                }
+
+                return connectionString;
+            }
+            catch
+            {
+                return "kt";
+            }
         }
     }
 }

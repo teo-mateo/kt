@@ -18,8 +18,9 @@ namespace kt.api.Models
         public int DeckId { get; set; }
         public CardStatus Status { get; set; }
 
-        public CardSide Front { get; set; }
-        public CardSide Back { get; set; }
+        public virtual CardSide Front { get; set; }
+        public virtual CardSide Back { get; set; }
+        public DateTime? LastShown { get; set; }
 
     }
 }

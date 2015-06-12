@@ -79,6 +79,10 @@ app.config(['$routeProvider',
         .when('/main', {
             templateUrl: 'views/main.html'
         })
+        .when('/test/:deckId', {
+            templateUrl: 'views/test.html',
+            controller: "TestCtrl"
+        })
         .otherwise({
             redirectTo: '/main'
         });

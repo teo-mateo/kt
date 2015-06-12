@@ -45,11 +45,15 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1502.0911\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Cors">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
@@ -99,8 +103,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <None Include="Properties\PublishProfiles\ktapi %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\ktapi - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\ktapi - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\ktapi - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\withsettings.pubxml" />
     <None Include="Scripts\angular.intellisense.js" />
-    <Content Include="Scripts\app\controllers\controllers.js" />
+    <Content Include="index.html" />
+    <Content Include="Scripts\app\controllers\CardEditCtrl.js" />
     <None Include="Scripts\app\controllers\_references.js" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
@@ -126,7 +136,11 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\controllers\DeckCardsCtrl.js" />
+    <Content Include="Scripts\app\controllers\DeckEditCtrl.js" />
+    <Content Include="Scripts\app\controllers\DeckListCtrl.js" />
     <Content Include="Scripts\app\controllers\OldController.js" />
+    <Content Include="Scripts\app\controllers\TestCtrl.js" />
     <Content Include="Scripts\app\services\CardsService.js" />
     <Content Include="Scripts\app\services\DecksService.js" />
     <Content Include="Scripts\app\services\forecast.js" />
@@ -922,12 +936,25 @@
     <Compile Include="Controllers\CardsController.cs" />
     <Compile Include="Controllers\CardSidesController.cs" />
     <Compile Include="Controllers\DecksController.cs" />
+    <Compile Include="Controllers\TestsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201506111603444_zoolander.cs" />
     <Compile Include="Migrations\201506111603444_zoolander.Designer.cs">
       <DependentUpon>201506111603444_zoolander.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506121337112_card_lastshown.cs" />
+    <Compile Include="Migrations\201506121337112_card_lastshown.Designer.cs">
+      <DependentUpon>201506121337112_card_lastshown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506121350553_testCard.cs" />
+    <Compile Include="Migrations\201506121350553_testCard.Designer.cs">
+      <DependentUpon>201506121350553_testCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506121441222_z.cs" />
+    <Compile Include="Migrations\201506121441222_z.Designer.cs">
+      <DependentUpon>201506121441222_z.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Card.cs" />
@@ -958,6 +985,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201506111603444_zoolander.resx">
       <DependentUpon>201506111603444_zoolander.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506121337112_card_lastshown.resx">
+      <DependentUpon>201506121337112_card_lastshown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506121350553_testCard.resx">
+      <DependentUpon>201506121350553_testCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506121441222_z.resx">
+      <DependentUpon>201506121441222_z.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

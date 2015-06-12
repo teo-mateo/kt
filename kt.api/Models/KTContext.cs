@@ -14,9 +14,9 @@ namespace kt.api.Models
 
         }
 
-        public DbSet<Deck> Decks { get; set; }
-        public DbSet<CardSide> CardSides { get; set; }
-        public DbSet<Card> Cards { get; set; }
-        public DbSet<Test> Tests { get; set; }
+        public virtual DbSet<Deck> Decks { get; set; }
+        public virtual DbSet<CardSide> CardSides { get; set; }
+        public virtual DbSet<Card> Cards { get; set; }
+        public virtual DbSet<Test> Tests { get; set; }
     }
 }
